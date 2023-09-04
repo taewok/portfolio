@@ -36,6 +36,7 @@ const Skill = () => {
       explain: [
         "유동 그리드 레이아웃, 이미지, 미디어 쿼리 등을 이용한 반응형 웹 구현",
         "CSS의 가독성을 높이고, 유지보수에 용이한 SCSS 사용",
+        "CSS 선택자를 사용하여 웹 페이지의 특정 요소를 선택하고 스타일을 적용",
         "프로젝트의 디자인에 알맞은 스타일 적용",
       ],
       textColor: "#1572B6",
@@ -43,9 +44,9 @@ const Skill = () => {
     {
       name: "JavaScript",
       explain: [
-        "JS를 이용한 연산과 DOM 객체의 조작",
-        "Rest API 기반의 서버 통신 및 데이터 처리 경험",
         "async/await 등을 axios 라이브러리를 활용한 비동기 작업 처리 경험",
+        "Rest API 기반의 서버 통신 및 데이터 처리 경험",
+        "JS를 이용한 연산과 DOM 객체의 조작",
       ],
       textColor: "#F1BF26",
     },
@@ -109,7 +110,7 @@ const Container = styled.div`
 const SkillsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 5vw;
+  padding: 0 10vw;
   width: 100%;
   height: 100%;
   color: white;
@@ -119,7 +120,6 @@ const SkillBox = styled.div`
   opacity: 0;
   padding: 25vh 0;
   width: 100%;
-  font-size: 2rem;
   &.active {
     div {
       &::after {
@@ -142,7 +142,7 @@ const SkillNameBox = styled.div`
   justify-content: center;
   width: 40%;
   text-align: center;
-  font-size: 7vw;
+  font-size: 6vw;
   color: ${(props) => props.textColor};
   text-shadow: 6px 6px 6px gray;
   span {
@@ -168,7 +168,7 @@ const SkillExplainList = styled.ul`
   flex-direction: column;
   padding-left: 8vw;
   width: 60%;
-  font-size: 2vw;
+  font-size: 1.7rem;
 `;
 const SkillExplainItem = styled.li`
   padding: 0 3vw 15px 0;
