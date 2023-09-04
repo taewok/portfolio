@@ -17,12 +17,12 @@ const AboutMe = () => {
       style.left = Math.random() * +window.innerWidth + `px`;
       const color = `${colorList[Math.ceil(Math.random() * 3)]}`;
       style.backgroundColor = color;
-      style.animationDuration = 12 + duration + `s`;
+      style.animationDuration = 16 + duration + `s`;
       style.boxShadow = `0 0 10px ${color},0 0 20px ${color},0 0 30px ${color},0 0 50px ${color}`;
 
       setTimeout(() => {
         document.querySelector("#aboutme-container").removeChild(e);
-      }, (12 + duration) * 1000);
+      }, (16 + duration) * 1000);
     };
 
     setInterval(() => {
@@ -41,12 +41,12 @@ const AboutMe = () => {
 const animate = keyframes`
     0%{
         transform: translateY(0);
-        opacity: 1;
+        opacity: 0.8;
     }
     75%{
         opacity: 0.5;
     }100%{
-        transform: translateY(-350vh);
+        transform: translateY(350vh);
         opacity: 0;
     }
 `;
@@ -60,7 +60,7 @@ const Container = styled.section`
   .circle {
     position: absolute;
     z-index: 1;
-    top: 99%;
+    top: 0%;
     aspect-ratio: 1/1;
     border-radius: 50%;
     animation: ${animate} 7s linear infinite;
