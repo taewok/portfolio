@@ -10,7 +10,7 @@ const MyExplanation = () => {
       y: 0,
       scrollTrigger: {
         trigger: "#aboutme-container",
-        start: "500px 80%",
+        start: "400px 80%",
         toggleActions: "play play play reverse",
         // markers: true,
       },
@@ -34,7 +34,7 @@ const Container = styled.div`
   opacity: 0;
   transform: translateY(60px);
   display: inline-block;
-  padding-top: 5vh;
+  padding-top: 8vh;
   padding-bottom: 30vh;
   width: 100%;
   height: fit-content;
