@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { gsap } from "gsap";
 
 const Skill = () => {
@@ -11,7 +11,7 @@ const Skill = () => {
         y: 0,
         scrollTrigger: {
           trigger: e,
-          start: "20% 50%",
+          start: "40% 50%",
           toggleActions: "play play play reverse",
           toggleClass: "active",
         },
@@ -47,6 +47,7 @@ const Skill = () => {
         "async/await 등을 axios 라이브러리를 활용한 비동기 작업 처리 경험",
         "Rest API 기반의 서버 통신 및 데이터 처리 경험",
         "JS를 이용한 연산과 DOM 객체의 조작",
+        "React를 활용한 컴포넌트 단위의 개발",
       ],
       textColor: "#F1BF26",
     },
@@ -63,43 +64,23 @@ const Skill = () => {
   return (
     <Container>
       <SkillsContainer id="skill-container">
-        {skillArray.map((value, index) =>
-          index % 2 === 0 ? (
-            <SkillBox className="skill-box" key={value.name}>
-              <SkillExplainList>
-                {value.explain.map((v) => (
-                  <SkillExplainItem key={v}>{v}</SkillExplainItem>
-                ))}
-              </SkillExplainList>
-              <SkillNameBox textColor={value.textColor}>
-                <span>{value.name}</span>
-              </SkillNameBox>
-            </SkillBox>
-          ) : (
-            <SkillBox className="skill-box" key={value.name}>
-              <SkillNameBox textColor={value.textColor}>
-                <span>{value.name}</span>
-              </SkillNameBox>
-              <SkillExplainList>
-                {value.explain.map((v) => (
-                  <SkillExplainItem key={v}>{v}</SkillExplainItem>
-                ))}
-              </SkillExplainList>
-            </SkillBox>
-          )
-        )}
+        {skillArray.map((value, index) => (
+          <SkillBox className="skill-box" key={value.name}>
+            <SkillExplainList>
+              {value.explain.map((v) => (
+                <SkillExplainItem key={v}>{v}</SkillExplainItem>
+              ))}
+            </SkillExplainList>
+            <SkillNameBox textColor={value.textColor}>
+              <Cicle />
+              <span>{value.name}</span>
+            </SkillNameBox>
+          </SkillBox>
+        ))}
       </SkillsContainer>
     </Container>
   );
 };
-
-const animate = keyframes`
-    0%{
-        width: 100%;
-    }100%{
-        width: 0%;
-    }
-`;
 
 const Container = styled.div`
   display: flex;
@@ -118,9 +99,9 @@ const SkillsContainer = styled.div`
 const SkillBox = styled.div`
   display: flex;
   opacity: 0;
-  padding: 25vh 0;
+  padding: 18vw 0;
   width: 100%;
-  &.active {
+  /* &.active {
     div {
       &::after {
         position: absolute;
@@ -130,10 +111,10 @@ const SkillBox = styled.div`
         width: 100%;
         height: 200%;
         background-color: black;
-        animation: ${animate} 1s ease-in forwards;
+        animation:  1s ease-in forwards;
       }
     }
-  }
+  } */
 `;
 const SkillNameBox = styled.div`
   position: relative;
@@ -145,22 +126,43 @@ const SkillNameBox = styled.div`
   font-size: 6vw;
   color: ${(props) => props.textColor};
   text-shadow: 6px 6px 6px gray;
+  circle {
+    &::after {
+      background-color: ${(props) => props.textColor + "d9"};
+    }
+  }
   span {
     position: relative;
     z-index: 99;
   }
-  &::before {
+`;
+const animate = keyframes`
+0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg); /* 360도 회전 (시계방향) */
+  }
+`;
+
+const Cicle = styled.circle`
+  position: absolute;
+  width: 60%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background-color: white;
+  animation: ${animate} 10s linear infinite;
+  &::after {
     position: absolute;
     content: "";
-    top: 50%;
+    top: 100%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100%;
-    height: 130%;
-    background-image: url("https://github.com/TWOGATH3R/twogather-web-frontend/assets/88264006/56feae1e-cd7f-4db0-8de3-296ba5362863");
-    background-size: contain;
-    background-position: center center;
-    background-repeat: no-repeat;
+    width: 10%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-color: blue;
+    /* animation: ${animate} 10s linear infinite; */
   }
 `;
 const SkillExplainList = styled.ul`
