@@ -1,22 +1,29 @@
 import React from "react";
 import styled from "styled-components";
+import Sliders from "./Sliders";
+import Info from "./Info";
 
-const Project = () => {
+const Project = ({ data }) => {
   return (
     <Container>
       <Corner></Corner>
       <Corner></Corner>
       <Corner></Corner>
       <Corner></Corner>
-      <Title>01</Title>
+      <Title>{data.index}</Title>
+      <ContentBox>
+        <Info data={data} />
+        <Sliders imgList={data.img} />
+      </ContentBox>
     </Container>
   );
 };
 
 const Container = styled.div`
   position: relative;
-  width: 100%;
-  height: 100%;
+  padding: 4vh 100px 0 100px;
+  width: calc(100% - 200px);
+  height: calc(100% - 4vh);
   color: black;
 `;
 const Corner = styled.span`
@@ -59,6 +66,18 @@ const Corner = styled.span`
   }
 `;
 
-const Title = styled.title``;
+const Title = styled.h1`
+  padding-left: 10vw;
+  text-align: left;
+  font-size: 4.5rem;
+  color: #494949;
+`;
+// const Info = styled.div`
+//   width: 50%;
+// `;
+const ContentBox = styled.div`
+  display: flex;
+  width: 100%;
+`;
 
 export default Project;
