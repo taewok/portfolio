@@ -17,20 +17,20 @@ const MainTitle = () => {
       rotate: 0,
     });
   }, []);
-  
+
   return (
     <IntroductionTextBox>
       <IntroductionText id="introduction-text">
         <p>
-          {nameTextArray.map((v) => (
-            <span key={v}>
+          {nameTextArray.map((v, i) => (
+            <span key={i}>
               <span>{v}</span>
             </span>
           ))}
         </p>
         <p>
-          {textArray.map((v) => (
-            <span key={v}>
+          {textArray.map((v, i) => (
+            <span key={i}>
               <span>{v}</span>
             </span>
           ))}
