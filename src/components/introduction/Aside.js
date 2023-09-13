@@ -6,22 +6,13 @@ const Aside = () => {
     <ContactBox>
       <ContactList id="contact-list">
         <ContactItem>
-          <a href="mailto:taewok51615@gmail.com">
-            Email.
-            <img src="물감.png" alt="물감효과 이미지" />
-          </a>
+          <a href="mailto:taewok51615@gmail.com">Email.</a>
         </ContactItem>
         <ContactItem>
-          <a href="https://github.com/taewok">
-            Github.
-            <img src="물감.png" alt="물감효과 이미지" />
-          </a>
+          <a href="https://github.com/taewok">Github.</a>
         </ContactItem>
         <ContactItem>
-          <a href="https://taewok.github.io">
-            Blog.
-            <img src="물감.png" alt="물감효과 이미지" />
-          </a>
+          <a href="https://taewok.github.io">Blog.</a>
         </ContactItem>
       </ContactList>
       <LastUpdate>Last update: 2023-08-19</LastUpdate>
@@ -64,7 +55,29 @@ const ContactList = styled.ul`
 `;
 const ContactItem = styled.li`
   position: relative;
-  padding: 15px 0px;
+  margin: 30px 0;
+  &::before {
+    position: absolute;
+    z-index: 1;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    transition: all 0.5s;
+    background-color: transparent;
+  }
+  &:hover {
+    &::before {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      border-radius: 10px;
+    }
+    a {
+      color: black;
+    }
+  }
   a {
     position: relative;
     z-index: 2;
@@ -74,24 +87,6 @@ const ContactItem = styled.li`
     color: white;
     font-size: 2.3rem;
     transition: all 1s;
-    img {
-      opacity: 0;
-      position: absolute;
-      z-index: -2;
-      top: 0;
-      left: -10%;
-      width: 160%;
-      height: 140%;
-      transform: translate(-50%, -20%);
-      transition: all 0.5s ease;
-    }
-    &:hover {
-      color: black;
-      & > img {
-        opacity: 1;
-        transform: translate(-15%, -20%);
-      }
-    }
   }
 `;
 
