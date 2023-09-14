@@ -18,7 +18,7 @@ const Library = () => {
     setRotation(num);
 
     const targetElement = document.getElementById("library-wrap");
-    targetElement.style.transform = `perspective(700px) rotateY(-${num}deg)`;
+    targetElement.style.transform = `perspective(600px) rotateY(-${num}deg)`;
   };
 
   const libraryWrapMouseLeave = (e) => {
@@ -60,9 +60,8 @@ const Library = () => {
     },
     {
       name: `Styled\nComponents`,
-      text: `HTTP 요청을 보내고 응답을 처리하는 기본적인 능력을 가졌으며
-      interceptors를 사용하여 api 통신 error,success 처리에 발생하는 반복적인 코드를 줄일 수 있습니다. 또한
-      async/await와 같은 비동기 프로그래밍 패턴`,
+      text: `스타일 관리가 편리한 컴포넌트 지향적 스타일링 구사와  createGlobalStyle를 통한 전역 스타일링이 가능하며
+      Props 값을 활용하여 컴포넌트의 스타일을 동적으로 변경할 수 있습니다.`,
       color: "#D976B3",
       img: "https://blog.kakaocdn.net/dn/bJnCEB/btrwJwIaH3z/K0E3JkariSbVpxDywoWw11/img.png",
     },
@@ -117,6 +116,7 @@ const Explain = styled.div`
   h2 {
     padding-bottom: 20px;
     text-align: center;
+    font-size: 1.3rem;
   }
   p {
     transform: translate3d(0, 0, 0);
@@ -149,14 +149,14 @@ const Name = styled.span`
 `;
 
 const animate = keyframes`
-    0%{ transform: perspective(700px) rotateY(${(props) => props.rotation}) }
-    100% { transform: perspective(700px) rotateY(360deg) }
+    0%{ transform: perspective(600px) rotateY(${(props) => props.rotation}) }
+    100% { transform: perspective(600px) rotateY(360deg) }
   `;
 const upAndDown = keyframes`
   0%{
-    transform: translate(-50%, -200%);
+    transform: translate(-65%, -200%);
   } 100%{
-    transform: translate(-50%, -230%);
+    transform: translate(-65%, -230%);
   } 
 `;
 
@@ -172,14 +172,14 @@ const LibraryWrap = styled.div`
   position: relative;
   width: 30vh;
   height: 30vh;
-  transform: perspective(700px);
+  transform: perspective(600px);
   transform-style: preserve-3d;
-  /* animation: ${(props) =>
+  animation: ${(props) =>
     props.isAnimating
       ? css`
           ${animate} 70s linear infinite
-        ` // 애니메이션이 적용되는 경우
-      : "none"}; */
+        `
+      : "none"};
   &:hover {
     animation-play-state: paused;
   }
@@ -207,7 +207,6 @@ const LibraryBox = styled.div`
           content: "click";
           top: 0;
           left: 50%;
-          transform: translate(-50%, -200%);
           color: white;
           font-size: 2rem;
           animation: ${upAndDown} 1s alternate-reverse infinite;
