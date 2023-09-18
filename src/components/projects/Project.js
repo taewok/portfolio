@@ -10,7 +10,7 @@ const Project = ({ data }) => {
       <Corner></Corner>
       <Corner></Corner>
       <Corner></Corner>
-      <Title>{data.index}</Title>
+      <Title>{data.title}</Title>
       <ContentBox>
         <Info data={data} />
         <Sliders imgList={data.img} />
@@ -21,8 +21,8 @@ const Project = ({ data }) => {
 
 const Container = styled.div`
   position: relative;
-  padding: 4vh 100px 0 100px;
-  width: calc(100% - 200px);
+  padding: 4vh 50px 0 50px;
+  width: calc(100% - 100px);
   height: calc(100% - 4vh);
   color: black;
 `;
@@ -67,17 +67,17 @@ const Corner = styled.span`
 `;
 
 const Title = styled.h1`
-  padding-left: 10vw;
+  /* padding-left: 50px; */
   text-align: left;
   font-size: 4.5rem;
-  color: #494949;
+  color: white;
+  text-shadow: -2px 0 #444, 0 2px #444, 2px 0 #444, 0 -2px #444;
 `;
-// const Info = styled.div`
-//   width: 50%;
-// `;
 const ContentBox = styled.div`
   display: flex;
-  width: 100%;
+  padding: 0 4vw;
+  width: calc(100% - 8vw);
+  height: calc(100% - 96.67px);
 `;
 
 export default Project;
