@@ -8,11 +8,7 @@ const Sliders = ({ imgList }) => {
     <Containder>
       <Carousel>
         {imgList.map((v) => (
-          <img
-            src="https://i.ytimg.com/vi/9xd1oX0st4Q/maxresdefault.jpg"
-            key={v}
-            alt={v}
-          />
+          <img src={v} key={v} alt={v} />
         ))}
       </Carousel>
     </Containder>
@@ -20,10 +16,19 @@ const Sliders = ({ imgList }) => {
 };
 
 const Containder = styled.div`
-  width: 50%;
+  display: flex;
+  align-items: center;
+  width: 45%;
+  height: 100%;
   img {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
+  }
+  .carousel-slider {
+    box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.5);
+  }
+  .carousel-status {
+    display: none;
   }
 `;
 
