@@ -6,11 +6,31 @@ import MainTitle from "./introduction/MainTitle";
 const Introduction = () => {
   useEffect(() => {
     const target = document.getElementById("introduction-container");
+
     target.addEventListener("wheel", (e) => {
+      e.preventDefault();
       if (e.deltaY > 0) {
+        // scrollDown(e);
         window.scrollTo({
           top: window.innerHeight, // 현재 스크롤 위치에서 100vh를 더합니다.
           behavior: "smooth", // 부드러운 스크롤 애니메이션 효과
+        });
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const element = document.getElementById("aboutme-container");
+
+    element.addEventListener("wheel", (e) => {
+      const rect = element.getBoundingClientRect();
+      const distanceFromTop = rect.top;
+
+      if (e.deltaY < 0 && distanceFromTop > -100) {
+        e.preventDefault();
+        window.scrollTo({
+          top: -60,
+          behavior: "smooth",
         });
       }
     });
