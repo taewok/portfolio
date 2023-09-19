@@ -67,7 +67,7 @@ const Corner = styled.span`
 `;
 
 const Title = styled.h1`
-  /* padding-left: 50px; */
+  padding-left: 4vw;
   text-align: left;
   font-size: 4.5rem;
   color: white;
