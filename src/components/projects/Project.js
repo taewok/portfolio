@@ -67,7 +67,7 @@ const Corner = styled.span`
 `;
 
 const Title = styled.h1`
-  padding-left: 4vw;
+  padding: 50px 0 0 4vw;
   text-align: left;
   font-size: 4.5rem;
   color: white;
@@ -77,7 +77,7 @@ const ContentBox = styled.div`
   display: flex;
   padding: 0 4vw;
   width: calc(100% - 8vw);
-  height: calc(100% - 96.67px);
+  height: calc(100% - 196.67px);
 `;
 
 export default Project;
