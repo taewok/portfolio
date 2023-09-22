@@ -34,7 +34,7 @@ const Container = styled.div`
   opacity: 0;
   transform: translateY(60px);
   display: inline-block;
-  padding-top: 8vh;
+  padding-top: 30vh;
   padding-bottom: 30vh;
   width: 100%;
   height: fit-content;
