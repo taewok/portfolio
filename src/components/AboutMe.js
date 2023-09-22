@@ -55,7 +55,7 @@ const Container = styled.section`
   position: relative;
   padding-top: 10vh;
   width: 100%;
-  height: 350vh;
+  height: fit-content;
   background-color: black;
   .circle {
     position: absolute;
