@@ -1,25 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled, { css, keyframes } from "styled-components";
 import { gsap } from "gsap";
 
 const Skill = () => {
   useEffect(() => {
-    const applyScrollTrigger = (e) => {
-      gsap.to(e, {
-        opacity: 1,
-        duration: 1,
-        y: 0,
-        scrollTrigger: {
-          trigger: e,
-          start: "40% 50%",
-          toggleActions: "play play play reverse",
-          toggleClass: "active",
+    gsap.to("#skill-wrap", {
+      opacity: 1,
+      duration: 1,
+      y: 0,
+      scrollTrigger: {
+        trigger: "#skill-wrap",
+        start: "-200px 80%",
+        onEnter: () => {
+          setActive(true);
         },
-      });
-    };
-    const elements = document.querySelectorAll(".skill-box");
-    elements.forEach((e) => {
-      applyScrollTrigger(e);
+        onLeaveBack: () => {
+          setActive(false);
+          console.log("Dfs");
+        },
+        toggleClass: "active",
+      },
     });
   }, []);
 
@@ -61,81 +61,36 @@ const Skill = () => {
     },
   ];
 
+  const [active, setActive] = useState(false);
+
   return (
-    <Container>
-      <SkillsContainer id="skill-container">
+    <Container id="skill-container">
+      <SkillsContainer id="skill-wrap">
         {skillArray.map((value, index) => (
-          <SkillBox className="skill-box" key={value.name}>
+          <>
+            <SkillBox
+              className="skill-box"
+              key={value.name}
+              rotate={index * 90}
+              active={active}
+            >
+              <SkillNameBox textColor={value.textColor}>
+                <Cicle />
+                <span>{value.name}</span>
+              </SkillNameBox>
+            </SkillBox>
             <SkillExplainList>
               {value.explain.map((v) => (
                 <SkillExplainItem key={v}>{v}</SkillExplainItem>
               ))}
             </SkillExplainList>
-            <SkillNameBox textColor={value.textColor}>
-              <Cicle />
-              <span>{value.name}</span>
-            </SkillNameBox>
-          </SkillBox>
+          </>
         ))}
       </SkillsContainer>
     </Container>
   );
 };
 
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  height: calc(100% - 466px);
-`;
-
-const SkillsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 0 10vw;
-  width: 100%;
-  height: 100%;
-  color: white;
-`;
-const SkillBox = styled.div`
-  display: flex;
-  opacity: 0;
-  padding: 18vw 0;
-  width: 100%;
-  /* &.active {
-    div {
-      &::after {
-        position: absolute;
-        top: -15%;
-        right: 0%;
-        content: "";
-        width: 100%;
-        height: 200%;
-        background-color: black;
-        animation:  1s ease-in forwards;
-      }
-    }
-  } */
-`;
-const SkillNameBox = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40%;
-  text-align: center;
-  font-size: 6vw;
-  color: ${(props) => props.textColor};
-  text-shadow: 6px 6px 6px gray;
-  circle {
-    &::after {
-      background-color: ${(props) => props.textColor + "d9"};
-    }
-  }
-  span {
-    position: relative;
-    z-index: 99;
-  }
-`;
 const animate = keyframes`
 0% {
     transform: rotate(0deg);
@@ -145,9 +100,16 @@ const animate = keyframes`
   }
 `;
 
-const Cicle = styled.circle`
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 600px 0;
+  height: calc(100% - 466px);
+`;
+
+const Cicle = styled.div`
   position: absolute;
-  width: 60%;
+  width: 150px;
   aspect-ratio: 1/1;
   border-radius: 50%;
   background-color: white;
@@ -162,18 +124,79 @@ const Cicle = styled.circle`
     aspect-ratio: 1/1;
     border-radius: 50%;
     background-color: blue;
-    /* animation: ${animate} 10s linear infinite; */
+    animation: ${animate} 10s linear infinite;
   }
 `;
 const SkillExplainList = styled.ul`
+  list-style: none;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-45%, -50%);
   display: flex;
   flex-direction: column;
-  padding-left: 8vw;
-  width: 60%;
-  font-size: 1.7rem;
+  padding: 0;
+  width: 100%;
+  background-color: black;
+  font-size: 1rem;
+  transition: all 1s;
 `;
-const SkillExplainItem = styled.li`
-  padding: 0 3vw 15px 0;
+const SkillExplainItem = styled.li``;
+
+const SkillsContainer = styled.div`
+  position: relative;
+  display: flex;
+  padding: 0 10vw;
+  height: 100%;
+  color: white;
+  &::before {
+    content: "Skills";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+`;
+const SkillBox = styled.div`
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  display: flex;
+  width: 150px;
+  transition: all 1.5s;
+  cursor: pointer;
+  ${(props) =>
+    props.active &&
+    css`
+      transform: ${(props) => `rotate(${props.rotate}deg)`} translate(300px)
+        ${(props) => `rotate(-${props.rotate}deg)`} translate(-20%, -50%);
+    `}
+  &:hover {
+    & + ul {
+      opacity: 1;
+    }
+  }
+`;
+const SkillNameBox = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  text-align: center;
+  font-size: 3rem;
+  color: ${(props) => props.textColor};
+  text-shadow: 6px 6px 6px gray;
+  ${Cicle} {
+    &::after {
+      background-color: ${(props) => props.textColor};
+    }
+  }
+  span {
+    position: relative;
+    z-index: 99;
+  }
 `;
 
 export default Skill;
