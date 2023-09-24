@@ -25,6 +25,9 @@ const Container = styled.div`
   width: calc(100% - 100px);
   height: calc(100% - 4vh);
   color: black;
+  @media screen and (max-width: 1080px) {
+    padding: 4vh 50px 50px 50px;
+  }
 `;
 const Corner = styled.span`
   position: absolute;
@@ -78,6 +81,9 @@ const ContentBox = styled.div`
   padding: 0 4vw;
   width: calc(100% - 8vw);
   height: calc(100% - 196.67px);
+  @media screen and (max-width: 1080px) {
+    flex-direction: column-reverse;
+  }
 `;
 
 export default Project;

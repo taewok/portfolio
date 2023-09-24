@@ -33,10 +33,21 @@ const Contact = () => {
 const Container = styled.div`
   padding: 0 5%;
   width: 40%;
+  @media screen and (max-width: 1080px) {
+    padding-bottom: 15vh;
+    width: 100%;
+  }
 `;
 
 const ContactList = styled.ul`
   list-style: none;
+  @media screen and (max-width: 1080px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
 `;
 const ContactItem = styled.li`
   margin: 0 0 30px 0;
@@ -52,6 +63,9 @@ const ContactItem = styled.li`
     padding-top: 10%;
     text-align: center;
     font-size: 1.5rem;
+  }
+  @media screen and (max-width: 1080px) {
+    margin: 0 30px 30px 30px;
   }
 `;
 

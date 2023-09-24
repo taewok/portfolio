@@ -88,6 +88,11 @@ const Container = styled.div`
   width: 36%;
   height: 80%;
   color: black;
+  @media screen and (max-width: 1080px) {
+    margin: 0 auto;
+    padding: 0;
+    width: 80%;
+  }
 `;
 const FormBox = styled.form`
   position: relative;

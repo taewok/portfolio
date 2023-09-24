@@ -137,9 +137,9 @@ const SkillExplainList = styled.ul`
   display: flex;
   flex-direction: column;
   padding: 0;
-  width: 100%;
+  width: 300px;
   background-color: black;
-  font-size: 1rem;
+  font-size: 1.2rem;
   transition: all 1s;
 `;
 const SkillExplainItem = styled.li``;

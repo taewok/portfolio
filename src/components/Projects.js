@@ -6,17 +6,36 @@ import Project from "./projects/Project";
 
 const Projects = () => {
   useEffect(() => {
-    const projectList = document.getElementById("projectList");
+    // GSAP 애니메이션을 저장할 변수
+    let gsapAnimation;
 
-    gsap.to(".projectsBox", {
-      xPercent: -100,
-      scrollTrigger: {
-        trigger: ".projectsBox",
-        start: `${projectList.clientHeight + 150}px 99%`,
-        end: `100%-=${projectList.clientHeight}px 10%`,
-        scrub: 0.5,
-      },
-    });
+    const handleResize = () => {
+      const projectList = document.getElementById("projectList");
+      if (window.innerWidth >= 1080) {
+        // GSAP 애니메이션을 설정
+        gsapAnimation = gsap.to(".projectsBox", {
+          xPercent: -100,
+          scrollTrigger: {
+            trigger: ".projectsBox",
+            start: `${projectList.clientHeight + 150}px 99%`,
+            end: `100%-=${projectList.clientHeight}px 10%`,
+            scrub: 0.5,
+          },
+        });
+      } else {
+        // 화면 너비가 1080px 이하이면 GSAP 애니메이션을 중지하고 초기 상태로 되돌림
+        if (gsapAnimation) {
+          gsapAnimation.kill(); // 애니메이션 중지
+          gsap.set(".projectsBox", { xPercent: 0 }); // 초기 상태로 되돌림
+        }
+      }
+    };
+
+    // 처음 마운트 될 때 한 번 실행
+    handleResize();
+
+    // 창 크기가 변경될 때마다 실행
+    window.addEventListener("resize", handleResize);
   }, []);
 
   const projectArray = [
@@ -151,6 +170,10 @@ const ProjectsBox = styled.section`
   width: 100%;
   height: 200vw;
   background-color: #8080ff;
+  @media screen and (max-width: 1080px) {
+    height: fit-content;
+    transform: none;
+  }
 `;
 const ProjectList = styled.ul`
   position: sticky;
@@ -160,6 +183,10 @@ const ProjectList = styled.ul`
   width: 200%;
   height: 100vh;
   list-style: none;
+  @media screen and (max-width: 1080px) {
+    flex-direction: column;
+    height: fit-content;
+  }
 `;
 const ProjectItem = styled.li`
   box-sizing: border-box;
@@ -171,6 +198,9 @@ const ProjectItem = styled.li`
   border-right: 1px solid #bfbfbf;
   text-align: center;
   transition: all 1s;
+  @media screen and (max-width: 1080px) {
+    padding: 60px 5vw 60px 5vw;
+  }
 `;
 
 export default Projects;

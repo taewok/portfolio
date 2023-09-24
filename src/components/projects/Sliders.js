@@ -30,6 +30,11 @@ const Containder = styled.div`
   .carousel-status {
     display: none;
   }
+  @media screen and (max-width: 1080px) {
+    margin: 0 auto;
+    padding-top: 100px;
+    width: 80%;
+  }
 `;
 
 export default Sliders;

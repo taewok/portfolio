@@ -35,6 +35,9 @@ const Container = styled.footer`
   background-color: black;
   color: white;
   overflow: hidden;
+  @media screen and (max-width: 1080px) {
+    height: fit-content;
+  }
 `;
 const ContentsBox = styled.div`
   position: relative;
@@ -62,6 +65,9 @@ const ContentsBox = styled.div`
     height: 50vw;
     background-color: rgb(65 65 65 / 44%);
     border-radius: 50%;
+  }
+  @media screen and (max-width: 1080px) {
+    flex-direction: column-reverse;
   }
 `;
 

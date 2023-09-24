@@ -48,6 +48,9 @@ const ContactBox = styled.aside`
     background-color: white;
     animation: ${animate} 1.5s ease 0.4s forwards;
   }
+  @media screen and (max-width: 1080px) {
+    width: 25%;
+  }
 `;
 const ContactList = styled.ul`
   display: inline;

@@ -51,6 +51,9 @@ const animate = keyframes`
 const IntroductionTextBox = styled.div`
   padding-top: 50vh;
   width: 85%;
+  @media screen and (max-width: 1080px) {
+    width: 75%;
+  }
 `;
 const IntroductionText = styled.div`
   padding-bottom: 10vh;
@@ -82,6 +85,9 @@ const IntroductionText = styled.div`
       rotate: 30deg;
       transform: translate(100px, 99px);
     }
+  }
+  @media screen and (max-width: 1080px) {
+    font-size: 5rem;
   }
 `;
 

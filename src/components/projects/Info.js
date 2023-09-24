@@ -35,6 +35,9 @@ const Container = styled.div`
   padding-right: 150px;
   width: calc(55% - 150px);
   white-space: pre-line;
+  @media screen and (max-width: 1080px) {
+    width: 100%;
+  }
 `;
 
 const DescBox = styled.div`
