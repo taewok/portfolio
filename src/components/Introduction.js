@@ -54,7 +54,7 @@ const Container = styled.section`
   background-color: black;
   font-family: "Montserrat";
   color: white;
-  overflow: auto;
+  overflow: hidden;
 `;
 
 export default Introduction;
