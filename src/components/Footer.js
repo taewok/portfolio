@@ -21,8 +21,8 @@ const Footer = () => {
   return (
     <Container id="footer-container">
       <ContentsBox>
-        <Email />
         <Contact />
+        <Email />
       </ContentsBox>
     </Container>
   );

@@ -31,7 +31,8 @@ const Contact = () => {
 };
 
 const Container = styled.div`
-  padding: 0 5%;
+  display: flex;
+  justify-content: flex-end;
   width: 40%;
   @media screen and (max-width: 1080px) {
     padding-bottom: 15vh;

@@ -84,7 +84,7 @@ const Email = () => {
 };
 
 const Container = styled.div`
-  padding: 0 7%;
+  padding: 0 0 0 7%;
   width: 36%;
   height: 80%;
   color: black;
