@@ -11,7 +11,7 @@ const Library = () => {
     let num = 0;
 
     libraryArray.forEach((v, i) => {
-      if (e.textContent === v.name || e.textContent.includes(v.name))
+      if (e.textContent === v.name || e.textContent === v.text)
         return (num = (i + 1) * (360 / libraryArray.length));
     });
 
@@ -23,7 +23,7 @@ const Library = () => {
 
   const libraryWrapMouseLeave = (e) => {
     setIsAnimating(true);
-    setRotation(0);
+    // setRotation(0);
   };
 
   const libraryArray = [
@@ -106,8 +106,8 @@ const Explain = styled.div`
   top: 0;
   left: 0;
   padding: 7%;
-  width: 80%;
-  height: 80%;
+  width: 85%;
+  height: 85%;
   background-color: white;
   opacity: 0;
   font-size: 1rem;
@@ -143,6 +143,8 @@ const Back = styled(Front)`
   transform: rotateY(-180deg);
 `;
 const Name = styled.span`
+  width: 100%;
+  height: 100%;
   color: white;
   font-size: 3rem;
   text-align: center;
