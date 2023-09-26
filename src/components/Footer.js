@@ -67,7 +67,7 @@ const ContentsBox = styled.div`
     border-radius: 50%;
   }
   @media screen and (max-width: 1080px) {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 `;
 
