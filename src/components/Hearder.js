@@ -102,6 +102,7 @@ const NavList = styled.ul`
 const NavItem = styled.li`
   margin: 0 10px;
   padding: 0 5px;
+  font-size: 1.2rem;
 `;
 
 export default Hearder;
