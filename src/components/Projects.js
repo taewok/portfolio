@@ -27,6 +27,7 @@ const Projects = () => {
         if (gsapAnimation) {
           gsapAnimation.kill(); // 애니메이션 중지
           gsap.set(".projectsBox", { xPercent: 0 }); // 초기 상태로 되돌림
+          window.location.reload();
         }
       }
     };
