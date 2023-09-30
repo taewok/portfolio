@@ -137,7 +137,7 @@ const SkillExplainList = styled.ul`
   display: flex;
   flex-direction: column;
   padding: 0;
-  width: 300px;
+  width: 380px;
   background-color: black;
   font-size: 1.2rem;
   transition: all 1s;
@@ -151,11 +151,12 @@ const SkillsContainer = styled.div`
   height: 100%;
   color: white;
   &::before {
-    content: "Skills";
+    content: "마우스를 올려보세요";
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 150px;
   }
 `;
 const SkillBox = styled.div`
@@ -169,7 +170,7 @@ const SkillBox = styled.div`
   ${(props) =>
     props.active &&
     css`
-      transform: ${(props) => `rotate(${props.rotate}deg)`} translate(300px)
+      transform: ${(props) => `rotate(${props.rotate}deg)`} translate(350px)
         ${(props) => `rotate(-${props.rotate}deg)`} translate(-20%, -50%);
     `}
   &:hover {
