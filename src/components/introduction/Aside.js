@@ -15,7 +15,7 @@ const Aside = () => {
           <a href="https://taewok.github.io">Blog.</a>
         </ContactItem>
       </ContactList>
-      <LastUpdate>Last update: 2023-08-19</LastUpdate>
+      <LastUpdate>Last update: 2023-10-02</LastUpdate>
     </ContactBox>
   );
 };
