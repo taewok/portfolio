@@ -16,7 +16,6 @@ const Skill = () => {
         },
         onLeaveBack: () => {
           setActive(false);
-          console.log("Dfs");
         },
         toggleClass: "active",
       },
@@ -26,37 +25,30 @@ const Skill = () => {
   const skillArray = [
     {
       name: "HTML",
-      explain: [
-        "시맨틱 마크업에 대한 이해를 바탕으로 웹표준을 준수한 레이아웃 설계",
-      ],
+      explain: `시맨틱 태그 활용의 중요성을 인지하고 있으며
+        반응형 웹에 따른 HTML구조를 설계할 수 있습니다.`,
       textColor: "#E44D26",
     },
     {
       name: "CSS",
-      explain: [
-        "유동 그리드 레이아웃, 이미지, 미디어 쿼리 등을 이용한 반응형 웹 구현",
-        "CSS의 가독성을 높이고, 유지보수에 용이한 SCSS 사용",
-        "CSS 선택자를 사용하여 웹 페이지의 특정 요소를 선택하고 스타일을 적용",
-        "프로젝트의 디자인에 알맞은 스타일 적용",
-      ],
+      explain: `SCSS를 사용하여  CSS의 가독성과 유지보수성을 향상이 가능하고
+        유동 그리드 레이아웃, 이미지 및 미디어 쿼리를 활용하여 반응형 웹 페이지 구현이 가능합니다. 
+        CSS 선택자를 활용하여 특정 요소에 스타일을 적용하는데 능하며, 
+        또한 styled-components를 사용하여 컴포넌트 기반의 동적 스타일링 구현이 가능합니다.`,
       textColor: "#1572B6",
     },
     {
       name: "JavaScript",
-      explain: [
-        "async/await 등을 axios 라이브러리를 활용한 비동기 작업 처리 경험",
-        "Rest API 기반의 서버 통신 및 데이터 처리 경험",
-        "JS를 이용한 연산과 DOM 객체의 조작",
-        "React를 활용한 컴포넌트 단위의 개발",
-      ],
+      explain: `async/await, Promise 등을 사용해 비동기 작업을 처리하는데 능하며, 
+        axios 라이브러리를 통한 Rest API를 기반으로 서버 통신과 데이터 처리를 수행 경험이 있으며, 
+        Vanilla JS 활용으로 DOM 조작이 가능합니다.`,
       textColor: "#F1BF26",
     },
     {
       name: "TypeScript",
-      explain: [
-        "타입스크립트의 정적 타입 검사를 활용하여 코드 안정성을 높이고 런타임 에러를 사전에 방지",
-        "인터페이스 및 타입 정의를 사용하여 코드의 가독성과 재사용성 상승",
-      ],
+      explain: `타입스크립트의 정적 타입 검사를 활용하여 코드 안정성을 높이고 런타임 에러를 사전에 방지할 수 있으며                     ,
+        인터페이스 및 타입 정의를 통해 코드의 가독성과 재사용성 향상시킬 수 있습니다.
+        또한 tsconfig.json 파일을 통해 TypeScript 컴파일러의 동작을 설정하고 프로젝트에 적합한 환경 구성이 가능합니다.`,
       textColor: "#3178C6",
     },
   ];
@@ -79,11 +71,7 @@ const Skill = () => {
                 <span>{value.name}</span>
               </SkillNameBox>
             </SkillBox>
-            <SkillExplainList>
-              {value.explain.map((v) => (
-                <SkillExplainItem key={v}>{v}</SkillExplainItem>
-              ))}
-            </SkillExplainList>
+            <SkillExplainList>{value.explain}</SkillExplainList>
           </>
         ))}
       </SkillsContainer>
@@ -133,13 +121,13 @@ const SkillExplainList = styled.ul`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-45%, -50%);
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   padding: 0;
-  width: 380px;
+  width: 420px;
   background-color: black;
-  font-size: 1.2rem;
+  font-size: 1rem;
   transition: all 1s;
 `;
 const SkillExplainItem = styled.li``;
@@ -196,7 +184,7 @@ const SkillNameBox = styled.div`
   }
   span {
     position: relative;
-    z-index: 99;
+    z-index: 999;
   }
 `;
 
