@@ -5,7 +5,7 @@ const Contact = () => {
   const array = [
     {
       title: "Phone",
-      text: "010-2911-4961",
+      text: "010-xxxx-xxxx",
     },
     {
       title: "Email",
