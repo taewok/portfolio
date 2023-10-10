@@ -14,8 +14,11 @@ const Aside = () => {
         <ContactItem>
           <a href="https://taewok.github.io">Blog.</a>
         </ContactItem>
+        <ContactItem>
+          <a href="https://taeweok-resume.netlify.app">Resume.</a>
+        </ContactItem>
       </ContactList>
-      <LastUpdate>Last update: 2023-10-02</LastUpdate>
+      <LastUpdate>Last update: 2023-10-11</LastUpdate>
     </ContactBox>
   );
 };
