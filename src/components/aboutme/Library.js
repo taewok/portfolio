@@ -1,38 +1,15 @@
-import React from "react";
-import { useState } from "react";
+import { gsap } from "gsap";
+import React, { useEffect } from "react";
 import styled, { css, keyframes } from "styled-components";
 
 const Library = () => {
-  const [rotation, setRotation] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(true);
-
-  const libraryWrapOnClick = (e) => {
-    setIsAnimating(false);
-    let num = 0;
-
-    libraryArray.forEach((v, i) => {
-      if (e.textContent === v.name || e.textContent === v.text)
-        return (num = (i + 1) * (360 / libraryArray.length));
-    });
-
-    setRotation(num);
-
-    const targetElement = document.getElementById("library-wrap");
-    targetElement.style.transform = `perspective(600px) rotateY(-${num}deg)`;
-  };
-
-  const libraryWrapMouseLeave = (e) => {
-    setIsAnimating(true);
-    // setRotation(0);
-  };
-
   const libraryArray = [
     {
       name: "React",
       text: `React Hook을 통한 변수 관리와 라이프 사이클에 적절한 활용이 
       가능하며
       컴포넌트의 재사용성을 고려한 컴포넌트 분리와 다양한 라이브러리 응용 가능합니다.`,
-      color: "#61DAFB",
+      color: "rgb(61 181 213)",
       img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png",
     },
     {
@@ -67,33 +44,43 @@ const Library = () => {
     },
   ];
 
+  useEffect(() => {
+    const libraryBoxes = document.querySelectorAll(".library-box");
+
+    libraryBoxes.forEach((box, index) => {
+      gsap.to(box, {
+        delay: index % 2 === 0 ? index * 0.2 : index * 0.6, // 인덱스에 따라 지연을 추가하여 stagger 효과 생성
+        duration: index % 2 === 0 ? 3 : 3,
+        onStart: () => {
+          // 애니메이션이 시작될 때 클래스 추가
+          box.classList.add("active");
+        },
+        scrollTrigger: {
+          trigger: "#library-wrap",
+          start: "20% 80%",
+          toggleActions: "play play play reverse",
+          markers: true,
+        },
+      });
+    });
+  }, []);
+
   return (
     <Container id="library-ontainer">
-      <LibraryWrap
-        id="library-wrap"
-        onClick={(e) => libraryWrapOnClick(e.target)}
-        onMouseLeave={() => libraryWrapMouseLeave()}
-        rotation={rotation}
-        isAnimating={isAnimating}
-      >
+      <LibraryWrap id="library-wrap">
         {libraryArray.map((v, i) => (
           <LibraryBox
             key={i}
-            num={i + 1}
-            deg={360 / libraryArray.length}
-            color={v.color}
-            active={rotation === ((i + 1) * 360) / libraryArray.length}
+            odd={i % 2 === 0}
+            className="library-box"
+            delay={i + 1 * 0.5}
           >
-            <Front>
+            <InfoBox color={v.color}>
               <Name>{v.name}</Name>
               <Explain>
-                <h2>{v.name}</h2>
                 <p>{v.text}</p>
               </Explain>
-            </Front>
-            <Back>
-              <Name>{v.name}</Name>
-            </Back>
+            </InfoBox>
           </LibraryBox>
         ))}
       </LibraryWrap>
@@ -101,138 +88,81 @@ const Library = () => {
   );
 };
 
+const InfoBox = styled.div`
+  padding: 30px 15px 15px 15px;
+  width: calc(100% - 30px);
+  height: calc(100% - 45px);
+  background-color: ${(props) => `${props.color}`};
+`;
+
 const Explain = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 7%;
-  width: 85%;
-  height: 85%;
-  background-color: white;
-  opacity: 0;
-  font-size: 1rem;
-  color: black;
-  transition: all 0.5s;
-  h2 {
-    padding-bottom: 20px;
-    text-align: center;
-    font-size: 1.3rem;
-  }
+  font-family: "IM_Hyemin-Bold";
+  font-size: 1.2rem;
   p {
-    transform: translate3d(0, 0, 0);
+    letter-spacing: 2px;
+    padding-top: 30px;
   }
-`;
-const Front = styled.div`
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  transition: all 0.5s;
-  backface-visibility: hidden;
-  &:hover > ${Explain} {
-    opacity: 1;
-  }
-  img {
-    width: 100%;
-    height: 100%;
-  }
-`;
-const Back = styled(Front)`
-  transform: rotateY(-180deg);
 `;
 const Name = styled.span`
   width: 100%;
   height: 100%;
   color: white;
-  font-size: 3rem;
+  font-size: 1.5rem;
   text-align: center;
 `;
 
-const animate = keyframes`
-    0%{ transform: perspective(600px) rotateY(${(props) => props.rotation}) }
-    100% { transform: perspective(600px) rotateY(360deg) }
-  `;
-const upAndDown = keyframes`
+const photoAnimate = (odd) => keyframes`
   0%{
-    transform: translate(-65%, -200%);
-  } 100%{
-    transform: translate(-65%, -230%);
-  } 
+    scale:1.5;
+  }100% {
+    scale: 1;
+    opacity: 1; 
+    transform: translateY(-20%) translateX(0) rotateZ(${odd ? 8 : -8}deg);
+  }
 `;
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  padding-top: 30vh;
+  padding: 30vh 0 15vh 0;
   width: 100%;
-  height: 100vh;
   background-color: black;
 `;
 const LibraryWrap = styled.div`
-  position: relative;
-  width: 30vh;
-  height: 30vh;
-  transform: perspective(600px);
-  transform-style: preserve-3d;
-  animation: ${(props) =>
-    props.isAnimating
-      ? css`
-          ${animate} 70s linear infinite
-        `
-      : "none"};
-  &:hover {
-    animation-play-state: paused;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 `;
 const LibraryBox = styled.div`
-  will-change: transform;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  font-size: 0;
-  transform-origin: center;
-  transform-style: preserve-3d;
-  transform: ${(props) => `rotateY(calc(${props.num * props.deg}deg))`}
-    translateZ(300px);
-  cursor: pointer;
-  white-space: pre-line;
+  position: relative;
+  opacity: 0;
+  margin: 5%;
+  padding: 15px 8px 60px 8px;
+  width: 350px;
+  height: 300px;
+  aspect-ratio: 1/1;
+  background-color: white;
+  color: white;
+  &.active {
+    animation: ${photoAnimate()} 1.5s forwards;
+  }
   ${(props) =>
-    props.active ||
+    props.odd &&
     css`
-      &:hover {
-        &::after {
-          position: absolute;
-          content: "click";
-          top: 0;
-          left: 50%;
-          color: white;
-          font-size: 2rem;
-          animation: ${upAndDown} 1s alternate-reverse infinite;
-        }
+      &.active {
+        animation: ${photoAnimate(props.odd)} 2s forwards;
       }
     `}
-  &:hover > ${Front} {
-    transform: rotateY(0) translateY(-10%);
-  }
-  &:hover > ${Back} {
-    transform: rotateY(-180deg) translateY(-10%);
-  }
-  ${Name} {
-    color: ${(props) => props.color};
-  }
-  ${Explain} {
-    &::before {
-      position: absolute;
-      content: "";
-      top: 0;
-      left: 0;
-      inset: 10px;
-      border: 3px solid ${(props) => props.color};
-    }
+  &::after {
+    position: absolute;
+    content: "";
+    top: 5px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 18px;
+    aspect-ratio: 1/1;
+    background-color: black;
+    border-radius: 50%;
   }
 `;
 
