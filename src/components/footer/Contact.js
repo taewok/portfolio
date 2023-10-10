@@ -4,16 +4,16 @@ import styled from "styled-components";
 const Contact = () => {
   const array = [
     {
-      title: "Name",
-      text: "김태욱",
-    },
-    {
       title: "Phone",
       text: "010-2911-4961",
     },
     {
       title: "Email",
       text: "taewok51615@gamil.com",
+    },
+    {
+      title: "Address",
+      text: "경기도 고양시 일산서구",
     },
   ];
   return (
@@ -35,6 +35,7 @@ const Container = styled.div`
   justify-content: flex-end;
   width: 40%;
   @media screen and (max-width: 1080px) {
+    justify-content: center;
     padding-bottom: 15vh;
     width: 100%;
   }
@@ -53,17 +54,17 @@ const ContactList = styled.ul`
 const ContactItem = styled.li`
   margin: 0 0 30px 0;
   padding: 10px;
-  width: 350px;
+  /* width: 350px; */
   height: 150px;
-  box-shadow: inset 0px 0px 6px 0px rgba(255, 255, 255, 0.5);
+  /* box-shadow: inset 0px 0px 6px 0px rgba(255, 255, 255, 0.5); */
   border-radius: 20px;
   h2 {
-    font-size: 1rem;
+    font-size: 2rem;
   }
   p {
     padding-top: 10%;
-    text-align: center;
-    font-size: 1.5rem;
+    /* text-align: right; */
+    font-size: 1.2rem;
   }
   @media screen and (max-width: 1080px) {
     margin: 0 30px 30px 30px;
