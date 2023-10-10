@@ -142,6 +142,7 @@ const MessageInput = styled.textarea`
   min-height: 200px;
   outline: none;
   text-decoration: none;
+  resize: none;
   & + span {
     transform: translate(5%, 50%);
   }
